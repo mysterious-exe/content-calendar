@@ -1,6 +1,10 @@
 package dev.sam.contentcalendar.Model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
@@ -9,7 +13,13 @@ public class Content{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+
+    @NotBlank(message="Title may not be blank")
     private String title;
+
+
+    @NotBlank(message="Description may not be blank")
     private String desc;
 
     @Enumerated(EnumType.STRING)
@@ -17,6 +27,8 @@ public class Content{
 
     @Enumerated(EnumType.STRING)
     private Type contentType;
+
+
     private LocalDateTime dateCreated;
     private LocalDateTime dateUpdated;
     private String url;

@@ -7,9 +7,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/content")
 public class ContentController {
@@ -24,7 +26,7 @@ public class ContentController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/create")
-    public String createContent(@RequestBody Content content){
+    public String createContent(@Valid @RequestBody Content content){
         contentService.saveContent(content);
         return "Content created successfully";
     }
@@ -39,21 +41,21 @@ public class ContentController {
         return contentService.getContents();
     }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+
     @DeleteMapping("/delete/{id}")
     public String deleteContentById(@PathVariable int id) {
         return contentService.deleteContentById(id);
     }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+
     @DeleteMapping("/delete")
     public String deleteAllContents(){
         return contentService.deleteAllContents();
     }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+
     @PutMapping("update/{id}")
-    public String updateContentById(@RequestBody Content content, @PathVariable int id){
+    public String updateContentById(@Valid @RequestBody Content content, @PathVariable int id){
         return contentService.updateContent(content,id);
     }
 }
