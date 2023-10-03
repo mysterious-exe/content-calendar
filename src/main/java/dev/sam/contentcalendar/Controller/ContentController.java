@@ -39,16 +39,19 @@ public class ContentController {
         return contentService.getContents();
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/delete/{id}")
     public String deleteContentById(@PathVariable int id) {
         return contentService.deleteContentById(id);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/delete")
     public String deleteAllContents(){
         return contentService.deleteAllContents();
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("update/{id}")
     public String updateContentById(@RequestBody Content content, @PathVariable int id){
         return contentService.updateContent(content,id);

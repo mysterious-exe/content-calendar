@@ -59,8 +59,12 @@ public class ContentServiceIMPL implements ContentService {
 
     @Override
     public String deleteContentById(int Id) {
-        contentRepository.deleteById(Id);
-        return "The content was deleted successfully";
+        if(contentRepository.existsById(Id)){
+            return "Content deleted successfully";
+        }
+        else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Content not found");
+        }
     }
 
     @Override
