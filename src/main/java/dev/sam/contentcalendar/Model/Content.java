@@ -1,4 +1,4 @@
-package dev.sam.contentcalendar.Model;
+package dev.sam.contentcalendar.Model; 
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;

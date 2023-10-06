@@ -1,9 +1,11 @@
 package dev.sam.contentcalendar.ServiceIMPL;
 
 import dev.sam.contentcalendar.Model.Content;
+import dev.sam.contentcalendar.Model.Status;
 import dev.sam.contentcalendar.Repository.ContentRepository;
 import dev.sam.contentcalendar.Service.ContentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -72,4 +74,6 @@ public class ContentServiceIMPL implements ContentService {
         contentRepository.deleteAll();
         return "All contents deleted successfully";
     }
+
+
 }

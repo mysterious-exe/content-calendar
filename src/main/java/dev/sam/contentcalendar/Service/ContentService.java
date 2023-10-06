@@ -1,6 +1,7 @@
 package dev.sam.contentcalendar.Service;
 
 import dev.sam.contentcalendar.Model.Content;
+import dev.sam.contentcalendar.Model.Status;
 
 import java.util.List;
 import java.util.Optional;

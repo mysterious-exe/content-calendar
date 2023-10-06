@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+
 public interface ContentRepository extends JpaRepository<Content, Integer> {
+
+
 
 }
