@@ -1,5 +1,6 @@
 package dev.sam.contentcalendar.Service;
 
+import dev.sam.contentcalendar.DTOs.ContentDTO;
 import dev.sam.contentcalendar.Model.Content;
 import dev.sam.contentcalendar.Model.Status;
 
@@ -8,7 +9,7 @@ import java.util.Optional;
 
 public interface ContentService {
 
-    String updateContent(Content content, int Id);
+    String updateContent(ContentDTO content, int Id);
     void saveContent(Content content);
     Optional<Content> getContentById(int Id);
     List<Content> getContents();

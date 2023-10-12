@@ -1,5 +1,6 @@
 package dev.sam.contentcalendar.Controller;
 
+import dev.sam.contentcalendar.DTOs.ContentDTO;
 import dev.sam.contentcalendar.Model.Content;
 import dev.sam.contentcalendar.Service.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +56,7 @@ public class ContentController {
 
 
     @PutMapping("update/{id}")
-    public String updateContentById(@Valid @RequestBody Content content, @PathVariable int id){
+    public String updateContentById(@Valid @RequestBody ContentDTO content, @PathVariable int id){
         return contentService.updateContent(content,id);
     }
 }

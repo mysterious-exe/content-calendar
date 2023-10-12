@@ -1,11 +1,10 @@
 package dev.sam.contentcalendar.ServiceIMPL;
 
+import dev.sam.contentcalendar.DTOs.ContentDTO;
 import dev.sam.contentcalendar.Model.Content;
-import dev.sam.contentcalendar.Model.Status;
 import dev.sam.contentcalendar.Repository.ContentRepository;
 import dev.sam.contentcalendar.Service.ContentService;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import dev.sam.contentcalendar.Utilities.Slugger;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -19,13 +18,15 @@ public class ContentServiceIMPL implements ContentService {
 
 
     private final ContentRepository contentRepository;
+    private final Slugger slugger;
 
-    public ContentServiceIMPL(ContentRepository contentRepository) {
+    public ContentServiceIMPL(ContentRepository contentRepository, Slugger slugger) {
         this.contentRepository = contentRepository;
+        this.slugger = slugger;
     }
 
     @Override
-    public String updateContent(Content content, int Id) {
+    public String updateContent(ContentDTO content, int Id) {
         if(contentRepository.existsById(Id)){
             Content c = contentRepository.findById(Id).get();
             c.setTitle(content.getTitle());
@@ -33,7 +34,7 @@ public class ContentServiceIMPL implements ContentService {
             c.setStatus(content.getStatus());
             c.setDateCreated(c.getDateCreated());
             c.setDateUpdated(LocalDateTime.now());
-            c.setUrl(content.getUrl());
+            c.setUrl(slugger.urlSlugify(content.getTitle()));
             contentRepository.save(c);
             return "Content updated successfully";
         }
